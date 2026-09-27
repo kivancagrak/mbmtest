@@ -1,0 +1,6 @@
+# OpenCode oturum dosyaları
+.opencode/
+
+# Sistem dosyaları
+Thumbs.db
+.DS_Store
