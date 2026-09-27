@@ -137,10 +137,21 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   z-index: 1000;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Cam efekti sözde elemana taşındı: backdrop-filter gibi özellikler
+   ana elemanda kaldığında, başlığın içindeki position: fixed ögeleri
+   (mobil menü paneli) viewport yerine başlığın içine hapsolur.
+   Sözde eleman bu efekti üstlenir; menü paneli viewport'a sabitlenir. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background-color: rgba(0, 0, 0, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
 }
 
 .header-inner {
@@ -280,7 +291,9 @@ body.nav-open .nav-toggle span:nth-child(3) {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.55);
-  z-index: 1050;
+  /* Header'ın (z-index 1000) ALTINDA kalarak sayfayı karartır;
+     açık menü paneli ve X butonu tıklanabilir kalır */
+  z-index: 990;
 }
 
 /* ---------------- Ana Sayfa Hero ---------------- */
